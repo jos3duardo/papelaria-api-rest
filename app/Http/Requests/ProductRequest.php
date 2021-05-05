@@ -14,7 +14,10 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'request',
+            'price' => 'request',
+            'photo' => 'request',
+            'product_type_id' => 'request|exists:product_types,id',
         ];
     }
 }

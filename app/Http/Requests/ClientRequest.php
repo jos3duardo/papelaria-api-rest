@@ -17,12 +17,12 @@ class ClientRequest extends FormRequest
             'name' => 'required',
             'email' => 'required|unique:clients,email',
             'phone' => 'required',
-            'date_birth' => 'required',
+            'date_birth' => 'required|date_format:Y-m-d',
             'address' => 'required',
             'complement' => 'required',
             'neighborhood' => 'required',
             'zip_code' => 'required',
-            'date_registration' => 'required',
+            'date_registration' => 'required|date_format:Y-m-d',
         ];
     }
 }
