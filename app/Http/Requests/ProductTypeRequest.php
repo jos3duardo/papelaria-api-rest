@@ -14,7 +14,7 @@ class ProductTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required'
+            'name' => "sometimes|required|unique:product_types",
         ];
     }
 }
