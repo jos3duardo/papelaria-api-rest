@@ -4,6 +4,7 @@ namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
+use App\Http\Requests\OrderUpdateRequest;
 use App\Models\Order;
 
 class OrderController extends Controller
@@ -23,7 +24,7 @@ class OrderController extends Controller
         //
     }
 
-    public function update(OrderRequest $request, Order $order)
+    public function update(OrderUpdateRequest $request, Order $order)
     {
         //
     }
