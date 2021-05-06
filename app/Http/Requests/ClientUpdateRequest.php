@@ -16,7 +16,7 @@ class ClientUpdateRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => "sometimes|required|unique:users,email,$this->id,id",
+            'email' => "sometimes|required|unique:clients,email,$this->id,id",
             'phone' => 'sometimes|required',
             'date_birth' => 'sometimes|required|date_format:Y-m-d',
             'address' => 'sometimes|required',
