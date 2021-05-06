@@ -15,7 +15,7 @@ class ClientRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|unique:clients,email',
+            'email' => 'required|email|unique:clients,email',
             'phone' => 'required',
             'date_birth' => 'required|date_format:Y-m-d',
             'address' => 'required',
