@@ -14,9 +14,9 @@ class OrderUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'sometimes|required',
-            'price' => 'sometimes|required|numeric',
-            'photo' => 'sometimes|required',
+            'client_id' => 'sometimes|required|numeric|exists:clients,id',
+            'product_id' => 'sometimes|required|numeric|exists:products,id',
+            'creation_date' => 'sometimes|required|date|date_format:Y-m-d',
         ];
     }
 }

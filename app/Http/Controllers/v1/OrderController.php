@@ -25,8 +25,12 @@ class OrderController extends Controller
     public function store(OrderRequest $request)
     {
         try {
-            $client = Order::create($request->all());
-            return response()->json(new OrderResource($client), Response::HTTP_OK);
+            $order = Order::create([
+                'products'=> json_encode($request->products),
+                'client_id' => $request->client_id,
+                'creation_date' => $request->creation_date
+            ]);
+            return response()->json(new OrderResource($order), Response::HTTP_OK);
         }catch (\Exception $err){
             return response()->json($err->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
