@@ -16,4 +16,9 @@ class Product extends Model
         'photo',
         'product_type_id'
     ];
+
+    public function type()
+    {
+        return $this->hasOne(ProductType::class,'id', 'product_type_id');
+    }
 }
