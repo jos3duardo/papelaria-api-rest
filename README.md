@@ -54,7 +54,7 @@ passos para rodar projeto sem uso do docker
   $ php artisan migrate --seed
 ```
 
-link de acesso para API usando server do laravel e php [http://localhost:8000/api/v1](http://localhost:8000/api/v1)
+link de acesso para API usando server do laravel [http://localhost:8000/api/v1](http://localhost:8000/api/v1)
 
 
 ## Rotas 
@@ -82,5 +82,5 @@ GET|HEAD       api/v1/products/{product} ................................. produ
 ```
 
 ## Documentação de Rotas
-[link de rotas no postmar](https://documenter.getpostman.com/view/10174080/TzRRBTUZ)  
+[link de rotas no postman](https://documenter.getpostman.com/view/10174080/TzRRBTUZ)  
 [link para importar rotas no postman](https://www.getpostman.com/collections/59aa50112561981f4856)
