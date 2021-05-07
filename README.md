@@ -1,62 +1,86 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Sistema de Papelaria
 
-## About Laravel
+API Restfull para gerir sistema com os módulos Cliente, Produtos e Pedido
+## Tecnologias
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- PHP 8
+- Laravel 8
+- Laravel sail 1.0
+- Banco de dados MySql 8
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Recursos
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Tipos de produtos definidos no sistema com a opção de adicionar novos
+- Validação dos campos dos clientes para criação e edição
+- Validação dos campos dos produtos para criação e edição
+- Tratamento para armazenamento de imagens
+- Validação para os campos do pedido
+- Soft delete em todas as tabelas
+- Uso de resource para formatar retornos da API
+- Aplicação Dockerizada
 
-## Learning Laravel
+## Instalação
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Baixando o projeto
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash 
+  $ git clone https://github.com/jos3duardo/papelaria-api-rest.git papelaria
+  $ cd papelaria
+```
 
-## Laravel Sponsors
+pasos para rodar o projeto em ambiente local usando [Laravel Sail](https://laravel.com/docs/8.x/sail) (docker)
+```bash 
+  $ composer install
+  $ cp .env.example .env
+  $ ./vendor/bin/sail artisan key:generate 
+  $ ./vendor/bin/sail artisan storage:link   
+  $ ./vendor/bin/sail up
+  $ ./vendor/bin/sail artisan migrate --seed
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+link de acesso para API usando docker [http://localhost/api/v1](http://localhost/api/v1)
 
-### Premium Partners
+passos para rodar projeto sem uso do docker
+- criar no banco local uma base de daos para o sistema
+- configurar o arquivo *.env* com os dados de acesso ao banco de dados
+- rodar comandos abaixo
+```bash 
+  $ composer install
+  $ cp .env.example .env
+  $ php artisan key:generate 
+  $ php artisan storage:link   
+  $ php artisan serve
+  $ php artisan migrate --seed
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
+link de acesso para API usando server do laravel e php [http://localhost:8000/api/v1](http://localhost:8000/api/v1)
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Rotas 
+```bash
+POST           api/v1/clients ............................................................................................................... clients.store
+GET|HEAD       api/v1/clients ............................................................................................................... clients.index
+PUT|PATCH      api/v1/clients/{client} ..................................................................................................... clients.update
+DELETE         api/v1/clients/{client} .................................................................................................... clients.destroy
+GET|HEAD       api/v1/clients/{client} ....................................................................................................... clients.show
+GET|HEAD       api/v1/orders ................................................................................................................. orders.index
+POST           api/v1/orders ................................................................................................................. orders.store
+DELETE         api/v1/orders/{order} ....................................................................................................... orders.destroy
+PUT|PATCH      api/v1/orders/{order} ........................................................................................................ orders.update
+GET|HEAD       api/v1/orders/{order} .......................................................................................................... orders.show
+GET|HEAD       api/v1/products ............................................................................................................. products.index
+POST           api/v1/products ............................................................................................................. products.store
+POST           api/v1/products-types ................................................................................................. products-types.store
+GET|HEAD       api/v1/products-types ................................................................................................. products-types.index
+DELETE         api/v1/products-types/{products_type} ............................................................................... products-types.destroy
+PUT|PATCH      api/v1/products-types/{products_type} ................................................................................ products-types.update
+GET|HEAD       api/v1/products-types/{products_type} .................................................................................. products-types.show
+DELETE         api/v1/products/{product} ................................................................................................. products.destroy
+PUT|PATCH      api/v1/products/{product} .................................................................................................. products.update
+GET|HEAD       api/v1/products/{product} .................................................................................................... products.show
+```
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Documentação de Rotas
+[link de rotas no postmar](https://documenter.getpostman.com/view/10174080/TzRRBTUZ)  
+[link para importar rotas no postman](https://www.getpostman.com/collections/59aa50112561981f4856)
