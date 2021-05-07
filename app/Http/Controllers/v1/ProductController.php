@@ -7,6 +7,8 @@ use App\Http\Requests\ProductRequest;
 use App\Http\Requests\ProductUpdateRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
+use mysql_xdevapi\XSession;
 use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends Controller
@@ -23,8 +25,16 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         try {
-            $client = Product::create($request->all());
-            return response()->json(new ProductResource($client), Response::HTTP_OK);
+            $photo = $request->file('photo')->store('product','public');
+
+            $product = new Product();
+            $product->name = $request->name;
+            $product->price = $request->price;
+            $product->photo = $photo;
+            $product->product_type_id = $request->product_type_id;
+            $product->save();
+
+            return response()->json(new ProductResource($product), Response::HTTP_OK);
         }catch (\Exception $err){
             return response()->json($err->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -42,10 +52,18 @@ class ProductController extends Controller
     public function update(ProductUpdateRequest $request, Product $product)
     {
         try {
-            $product->fill($request->all());
+            $data = $request->all();
+            if ($request->hasFile('photo')) {
+                $photo = $request->file('photo')->store('product','public');
+                Storage::disk('public')->delete($product->photo);
+                $data['photo'] = $photo;
+            }
+
+            $product->fill($data);
             $product->save();
+
             return response()->json(new ProductResource($product), Response::HTTP_OK);
-        }catch (\Exception $err){
+        } catch (\Exception $err) {
             return response()->json($err->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -54,7 +72,7 @@ class ProductController extends Controller
     {
         try {
             $product->delete();
-            return response()->json('', Response::HTTP_OK);
+            return response()->json([], Response::HTTP_OK);
         }catch (\Exception $err){
             return response()->json($err->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
