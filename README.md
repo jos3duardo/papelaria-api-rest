@@ -59,26 +59,26 @@ link de acesso para API usando server do laravel e php [http://localhost:8000/ap
 
 ## Rotas 
 ```bash
-POST           api/v1/clients ............................................................................................................... clients.store
-GET|HEAD       api/v1/clients ............................................................................................................... clients.index
-PUT|PATCH      api/v1/clients/{client} ..................................................................................................... clients.update
-DELETE         api/v1/clients/{client} .................................................................................................... clients.destroy
-GET|HEAD       api/v1/clients/{client} ....................................................................................................... clients.show
-GET|HEAD       api/v1/orders ................................................................................................................. orders.index
-POST           api/v1/orders ................................................................................................................. orders.store
-DELETE         api/v1/orders/{order} ....................................................................................................... orders.destroy
-PUT|PATCH      api/v1/orders/{order} ........................................................................................................ orders.update
-GET|HEAD       api/v1/orders/{order} .......................................................................................................... orders.show
-GET|HEAD       api/v1/products ............................................................................................................. products.index
-POST           api/v1/products ............................................................................................................. products.store
-POST           api/v1/products-types ................................................................................................. products-types.store
-GET|HEAD       api/v1/products-types ................................................................................................. products-types.index
-DELETE         api/v1/products-types/{products_type} ............................................................................... products-types.destroy
-PUT|PATCH      api/v1/products-types/{products_type} ................................................................................ products-types.update
-GET|HEAD       api/v1/products-types/{products_type} .................................................................................. products-types.show
-DELETE         api/v1/products/{product} ................................................................................................. products.destroy
-PUT|PATCH      api/v1/products/{product} .................................................................................................. products.update
-GET|HEAD       api/v1/products/{product} .................................................................................................... products.show
+POST           api/v1/clients ............................................ clients.store
+GET|HEAD       api/v1/clients ............................................ clients.index
+PUT|PATCH      api/v1/clients/{client} .................................. clients.update
+DELETE         api/v1/clients/{client} ................................. clients.destroy
+GET|HEAD       api/v1/clients/{client} .................................... clients.show
+GET|HEAD       api/v1/orders .............................................. orders.index
+POST           api/v1/orders .............................................. orders.store
+DELETE         api/v1/orders/{order} .................................... orders.destroy
+PUT|PATCH      api/v1/orders/{order} ..................................... orders.update
+GET|HEAD       api/v1/orders/{order} ....................................... orders.show
+GET|HEAD       api/v1/products .......................................... products.index
+POST           api/v1/products .......................................... products.store
+POST           api/v1/products-types .............................. products-types.store
+GET|HEAD       api/v1/products-types .............................. products-types.index
+DELETE         api/v1/products-types/{products_type} ............ products-types.destroy
+PUT|PATCH      api/v1/products-types/{products_type} ............. products-types.update
+GET|HEAD       api/v1/products-types/{products_type} ............... products-types.show
+DELETE         api/v1/products/{product} .............................. products.destroy
+PUT|PATCH      api/v1/products/{product} ............................... products.update
+GET|HEAD       api/v1/products/{product} ................................. products.show
 ```
 
 ## Documentação de Rotas
